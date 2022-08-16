@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+  <title>Nota</title>
+</head>
+<body>
+  <main class="main">
+
+    <div class="container">
+      <form action="{% url 'add_nota' id=id%}" method="post">
+        {% csrf_token %}
+        <h2>Cadastrar Nota</h2>
+
+        <div class="form-element">
+          <label for="">Materia</label>
+          <input type="text" name="materia" required>
+        </div>
+  
+        <div class="form-element">
+          <label for="">Unidade 1</label>
+          <input type="number" step="0.01" max="10" min="0" name="u1" required>
+        </div>
+
+        <div class="form-element">
+          <label for="">Unidade 2</label>
+          <input type="number"  step="0.01" max="10" min="0" name="u2" required>
+        </div>
+
+        <div class="form-element">
+          <label for="">Unidade 3</label>
+          <input type="number" step="0.01"  max="10" min="0" name="u3" required>
+        </div>
+
+        <div class="form-element">
+          <label for="">Unidade 4</label>
+          <input type="number" step="0.01" max="10" min="0" name="u4" required>
+        </div>
+  
+        <div class="form-element">
+          <button>adicionar</button>
+        </div>
+  
+      </form>
+
+      <div class="separado">
+        <div class="form-element">
+          <label for="soma">Soma</label>
+          <input type="text" id="soma" readonly> 
+        </div>
+        
+        <div class="form-element">
+          <label for="media">Media</label>
+          <input type="text" id="media" readonly>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="{% static 'js/add_notas.js' %}"></script>
+
+</body>
+</html>

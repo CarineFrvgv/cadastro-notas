@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/aluno.css' %}">
+  <title>{{aluno.nome}}</title>
+</head>
+<body>
+  <div class="container">
+    <!-- informacoes do aluno -->
+    <div class="aluno-info">
+
+      <h1>Sobre</h1>
+      <div class="elementos">
+        <h3 class="elemento titulo">Nome do aluno:</h3>
+        <h3 class="elemento">{{aluno.nome}}</h3>
+      </div>
+
+      <hr>
+
+      <div class="elementos">
+        <h3 class="elemento titulo">Data de Nascimento:</h3>
+        <h3 class="elemento">{{aluno.data_nascimento}}</h3>
+      </div>
+
+      <hr>
+
+      <div class="elementos">
+        <h3 class="elemento titulo">Número de Telefone:</h3>
+        <h3 class="elemento">{{aluno.numero_telefone}}</h3>
+      </div>
+
+      <hr>
+
+    </div>
+
+    <!-- botoes -->
+    <div class="container-btn">
+      <a class="btn" href="{% url 'alunos_cadastrados' %}">Todos alunos</a>
+      <a class="btn" href="{% url 'add_nota' id=aluno.id %}">Adicionar nota</a>
+    </div>
+
+    <!-- tabela com notas -->
+    <div class="table">
+      <h1>Notas</h1>
+
+      <table>
+        {% if not notas %}
+          <tr>
+            <td>O aluno não possui notas</td>
+          </tr>
+
+        {% else %}
+          <tr>
+            <th>Materia</th>
+            <th>Unidade 1</th>
+            <th>Unidade 2</th>
+            <th>Unidade 3</th>
+            <th>Unidade 4</th>
+            <th>Soma</th>
+            <th>Media</th>
+          </tr>
+
+        {% for nota in notas %}
+
+          <tr> 
+            <td>{{nota.materia.nome}}</td>
+            <td>{{nota.unidade_1}}</td>
+            <td>{{nota.unidade_2}}</td>
+            <td>{{nota.unidade_3}}</td>
+            <td>{{nota.unidade_4}}</td>
+            <td>{{ nota.get_soma }}</td>
+            <td>{{ nota.get_media }}</td> 
+          </tr>
+
+          {% endfor %}
+        {% endif %}
+      </table> 
+    </div>
+    
+  </div>
+</body>
+</html>
